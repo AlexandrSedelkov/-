@@ -18,69 +18,92 @@ namespace Блокнот
             InitializeComponent();
         }
 
-        private void notebookForm_Load(object sender, EventArgs e)
+        private void NotebookForm_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void createButton_Click(object sender, EventArgs e)
+        private void CreateButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.FileName = "";
             mainTextBox.Text = "";
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void cutButton_Click(object sender, EventArgs e)
+        private void CutButton_Click(object sender, EventArgs e)
         {
             mainTextBox.Cut();
         }
 
-        private void copyButton_Click(object sender, EventArgs e)
+        private void CopyButton_Click(object sender, EventArgs e)
         {
             mainTextBox.Copy();
         }
 
-        private void pasteButton_Click(object sender, EventArgs e)
+        private void PasteButton_Click(object sender, EventArgs e)
         {
             mainTextBox.Paste();
         }
 
-        private void fontColorButton_Click(object sender, EventArgs e)
+        private void FontColorButton_Click(object sender, EventArgs e)
         {
             ColorDialog dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
                 mainTextBox.SelectionColor = dialog.Color;
         }
 
-        private void fontFormatButton_Click(object sender, EventArgs e)
+        private void FontFormatButton_Click(object sender, EventArgs e)
         {
             FontDialog dialog = new FontDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
                 mainTextBox.SelectionFont = dialog.Font;
         }
 
-        private void openButton_Click(object sender, EventArgs e)
+        private void OpenButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
                 mainTextBox.Text = File.ReadAllText(dialog.FileName);
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
                 File.WriteAllText(dialog.FileName,mainTextBox.Text);
         }
 
-        private void aboutProgramButton_Click(object sender, EventArgs e)
+        private void AboutProgramButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Это блокнот. \n\nГлавный разработчик: Седелков Александр Евгеньевич", "Блокнот: сведения", MessageBoxButtons.OK, MessageBoxIcon.Question);
+        }
 
+        private void WordWrapButton_Click(object sender, EventArgs e)
+        {
+            if(wordWrapButton.Checked == true)
+            {
+                mainTextBox.WordWrap = false;
+                wordWrapButton.Checked = false;
+            }
+            else if (wordWrapButton.Checked == false)
+            {
+                mainTextBox.WordWrap = true;
+                wordWrapButton.Checked = true;
+            }
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void PrintButton_Click(object sender, EventArgs e)
+        {
+            PrintDialog dialog = new PrintDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
+            }
         }
     }
 }

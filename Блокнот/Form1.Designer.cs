@@ -37,6 +37,8 @@ namespace Блокнот
             this.openButton = new System.Windows.Forms.ToolStripMenuItem();
             this.saveButton = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.printButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.closeButton = new System.Windows.Forms.ToolStripMenuItem();
             this.правкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cutButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,13 +46,17 @@ namespace Блокнот
             this.шрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fontColorButton = new System.Windows.Forms.ToolStripMenuItem();
             this.fontFormatButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.wordWrapButton = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutProgramButton = new System.Windows.Forms.ToolStripMenuItem();
             this.mainTextBox = new System.Windows.Forms.RichTextBox();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
             pasteButton = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -61,11 +67,11 @@ namespace Блокнот
             pasteButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             pasteButton.Size = new System.Drawing.Size(227, 26);
             pasteButton.Text = "Вставить";
-            pasteButton.Click += new System.EventHandler(this.pasteButton_Click);
+            pasteButton.Click += new System.EventHandler(this.PasteButton_Click);
             // 
             // menu
             // 
-            this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.menu.BackColor = System.Drawing.SystemColors.Control;
             this.menu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
@@ -85,6 +91,8 @@ namespace Блокнот
             this.openButton,
             this.saveButton,
             this.toolStripSeparator1,
+            this.printButton,
+            this.toolStripSeparator3,
             this.closeButton});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
@@ -96,7 +104,7 @@ namespace Блокнот
             this.createButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.createButton.Size = new System.Drawing.Size(224, 26);
             this.createButton.Text = "Создать";
-            this.createButton.Click += new System.EventHandler(this.createButton_Click);
+            this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // openButton
             // 
@@ -104,7 +112,7 @@ namespace Блокнот
             this.openButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openButton.Size = new System.Drawing.Size(224, 26);
             this.openButton.Text = "Открыть";
-            this.openButton.Click += new System.EventHandler(this.openButton_Click);
+            this.openButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
             // saveButton
             // 
@@ -112,19 +120,32 @@ namespace Блокнот
             this.saveButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveButton.Size = new System.Drawing.Size(224, 26);
             this.saveButton.Text = "Сохранить";
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
+            // printButton
+            // 
+            this.printButton.Name = "printButton";
+            this.printButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.printButton.Size = new System.Drawing.Size(224, 26);
+            this.printButton.Text = "Печать";
+            this.printButton.Click += new System.EventHandler(this.PrintButton_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
+            // 
             // closeButton
             // 
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(224, 26);
             this.closeButton.Text = "Выход";
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // правкаToolStripMenuItem
             // 
@@ -142,7 +163,7 @@ namespace Блокнот
             this.cutButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.cutButton.Size = new System.Drawing.Size(227, 26);
             this.cutButton.Text = "Вырезать";
-            this.cutButton.Click += new System.EventHandler(this.cutButton_Click);
+            this.cutButton.Click += new System.EventHandler(this.CutButton_Click);
             // 
             // copyButton
             // 
@@ -150,13 +171,15 @@ namespace Блокнот
             this.copyButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copyButton.Size = new System.Drawing.Size(227, 26);
             this.copyButton.Text = "Копировать";
-            this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
+            this.copyButton.Click += new System.EventHandler(this.CopyButton_Click);
             // 
             // шрифтToolStripMenuItem
             // 
             this.шрифтToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fontColorButton,
-            this.fontFormatButton});
+            this.fontFormatButton,
+            this.toolStripSeparator2,
+            this.wordWrapButton});
             this.шрифтToolStripMenuItem.Name = "шрифтToolStripMenuItem";
             this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.шрифтToolStripMenuItem.Text = "Шрифт";
@@ -164,16 +187,30 @@ namespace Блокнот
             // fontColorButton
             // 
             this.fontColorButton.Name = "fontColorButton";
-            this.fontColorButton.Size = new System.Drawing.Size(224, 26);
+            this.fontColorButton.Size = new System.Drawing.Size(230, 26);
             this.fontColorButton.Text = "Цвет";
-            this.fontColorButton.Click += new System.EventHandler(this.fontColorButton_Click);
+            this.fontColorButton.Click += new System.EventHandler(this.FontColorButton_Click);
             // 
             // fontFormatButton
             // 
             this.fontFormatButton.Name = "fontFormatButton";
-            this.fontFormatButton.Size = new System.Drawing.Size(224, 26);
+            this.fontFormatButton.Size = new System.Drawing.Size(230, 26);
             this.fontFormatButton.Text = "Формат";
-            this.fontFormatButton.Click += new System.EventHandler(this.fontFormatButton_Click);
+            this.fontFormatButton.Click += new System.EventHandler(this.FontFormatButton_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(227, 6);
+            // 
+            // wordWrapButton
+            // 
+            this.wordWrapButton.Checked = true;
+            this.wordWrapButton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.wordWrapButton.Name = "wordWrapButton";
+            this.wordWrapButton.Size = new System.Drawing.Size(230, 26);
+            this.wordWrapButton.Text = "Перенос по словам";
+            this.wordWrapButton.Click += new System.EventHandler(this.WordWrapButton_Click);
             // 
             // справкаToolStripMenuItem
             // 
@@ -188,11 +225,11 @@ namespace Блокнот
             this.aboutProgramButton.Name = "aboutProgramButton";
             this.aboutProgramButton.Size = new System.Drawing.Size(224, 26);
             this.aboutProgramButton.Text = "О программе";
-            this.aboutProgramButton.Click += new System.EventHandler(this.aboutProgramButton_Click);
+            this.aboutProgramButton.Click += new System.EventHandler(this.AboutProgramButton_Click);
             // 
             // mainTextBox
             // 
-            this.mainTextBox.BackColor = System.Drawing.Color.Thistle;
+            this.mainTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.mainTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mainTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -202,9 +239,13 @@ namespace Блокнот
             this.mainTextBox.TabIndex = 1;
             this.mainTextBox.Text = "";
             // 
-            // openFileDialog1
+            // openFileDialog
             // 
-            this.openFileDialog1.FileName = "openFileDialog";
+            this.openFileDialog.FileName = "openFileDialog";
+            // 
+            // printDialog
+            // 
+            this.printDialog.UseEXDialog = true;
             // 
             // notebookForm
             // 
@@ -219,7 +260,7 @@ namespace Блокнот
             this.Name = "notebookForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Блокнот";
-            this.Load += new System.EventHandler(this.notebookForm_Load);
+            this.Load += new System.EventHandler(this.NotebookForm_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);
@@ -243,12 +284,18 @@ namespace Блокнот
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutProgramButton;
         private System.Windows.Forms.RichTextBox mainTextBox;
-        private System.Windows.Forms.ToolStripMenuItem closeButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.FontDialog fontDialog;
         private System.Windows.Forms.ColorDialog colorDialog;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem wordWrapButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.PrintDialog printDialog;
+        private System.Windows.Forms.ToolStripMenuItem printButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem closeButton;
+        private System.Drawing.Printing.PrintDocument printDocument;
     }
 }
 
