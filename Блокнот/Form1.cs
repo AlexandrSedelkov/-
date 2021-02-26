@@ -7,45 +7,80 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Блокнот
 {
-    public partial class Блокнот : Form
+    public partial class notebookForm : Form
     {
-        public Блокнот()
+        public notebookForm()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void notebookForm_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        private void createButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.FileName = "";
+            mainTextBox.Text = "";
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cutButton_Click(object sender, EventArgs e)
         {
-            var saveFile = new SaveFileDialog();
-            //text
+            mainTextBox.Cut();
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void copyButton_Click(object sender, EventArgs e)
         {
-
+            mainTextBox.Copy();
         }
 
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pasteButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Это блокнот!", "Блокнот: сведения", MessageBoxButtons.OK, MessageBoxIcon.None);
+            mainTextBox.Paste();
         }
 
-        private void цветToolStripMenuItem_Click(object sender, EventArgs e)
+        private void fontColorButton_Click(object sender, EventArgs e)
         {
-            
+            ColorDialog dialog = new ColorDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+                mainTextBox.SelectionColor = dialog.Color;
+        }
+
+        private void fontFormatButton_Click(object sender, EventArgs e)
+        {
+            FontDialog dialog = new FontDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+                mainTextBox.SelectionFont = dialog.Font;
+        }
+
+        private void openButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+                mainTextBox.Text = File.ReadAllText(dialog.FileName);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+                File.WriteAllText(dialog.FileName,mainTextBox.Text);
+        }
+
+        private void aboutProgramButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
