@@ -16,7 +16,7 @@ namespace Блокнот
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new notebookForm());
+            Application.Run(new NotebookForm());
         }
     }
 }

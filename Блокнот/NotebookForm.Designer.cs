@@ -1,7 +1,7 @@
 ﻿
 namespace Блокнот
 {
-    partial class notebookForm
+    partial class NotebookForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -30,7 +30,7 @@ namespace Блокнот
         private void InitializeComponent()
         {
             System.Windows.Forms.ToolStripMenuItem pasteButton;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(notebookForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotebookForm));
             this.menu = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +80,7 @@ namespace Блокнот
             this.справкаToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1074, 28);
+            this.menu.Size = new System.Drawing.Size(1074, 30);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
@@ -95,14 +95,14 @@ namespace Блокнот
             this.toolStripSeparator3,
             this.closeButton});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // createButton
             // 
             this.createButton.Name = "createButton";
             this.createButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.createButton.Size = new System.Drawing.Size(224, 26);
+            this.createButton.Size = new System.Drawing.Size(216, 26);
             this.createButton.Text = "Создать";
             this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
@@ -110,7 +110,7 @@ namespace Блокнот
             // 
             this.openButton.Name = "openButton";
             this.openButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openButton.Size = new System.Drawing.Size(224, 26);
+            this.openButton.Size = new System.Drawing.Size(216, 26);
             this.openButton.Text = "Открыть";
             this.openButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
@@ -118,32 +118,32 @@ namespace Блокнот
             // 
             this.saveButton.Name = "saveButton";
             this.saveButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveButton.Size = new System.Drawing.Size(224, 26);
+            this.saveButton.Size = new System.Drawing.Size(216, 26);
             this.saveButton.Text = "Сохранить";
             this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(213, 6);
             // 
             // printButton
             // 
             this.printButton.Name = "printButton";
             this.printButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printButton.Size = new System.Drawing.Size(224, 26);
+            this.printButton.Size = new System.Drawing.Size(216, 26);
             this.printButton.Text = "Печать";
             this.printButton.Click += new System.EventHandler(this.PrintButton_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(213, 6);
             // 
             // closeButton
             // 
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(224, 26);
+            this.closeButton.Size = new System.Drawing.Size(216, 26);
             this.closeButton.Text = "Выход";
             this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
@@ -154,7 +154,7 @@ namespace Блокнот
             this.copyButton,
             pasteButton});
             this.правкаToolStripMenuItem.Name = "правкаToolStripMenuItem";
-            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
+            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(74, 26);
             this.правкаToolStripMenuItem.Text = "Правка";
             // 
             // cutButton
@@ -181,7 +181,7 @@ namespace Блокнот
             this.toolStripSeparator2,
             this.wordWrapButton});
             this.шрифтToolStripMenuItem.Name = "шрифтToolStripMenuItem";
-            this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(71, 26);
             this.шрифтToolStripMenuItem.Text = "Шрифт";
             // 
             // fontColorButton
@@ -217,13 +217,13 @@ namespace Блокнот
             this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutProgramButton});
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(81, 26);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
             // aboutProgramButton
             // 
             this.aboutProgramButton.Name = "aboutProgramButton";
-            this.aboutProgramButton.Size = new System.Drawing.Size(224, 26);
+            this.aboutProgramButton.Size = new System.Drawing.Size(187, 26);
             this.aboutProgramButton.Text = "О программе";
             this.aboutProgramButton.Click += new System.EventHandler(this.AboutProgramButton_Click);
             // 
@@ -233,9 +233,9 @@ namespace Блокнот
             this.mainTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mainTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.mainTextBox.Location = new System.Drawing.Point(0, 28);
+            this.mainTextBox.Location = new System.Drawing.Point(0, 30);
             this.mainTextBox.Name = "mainTextBox";
-            this.mainTextBox.Size = new System.Drawing.Size(1074, 606);
+            this.mainTextBox.Size = new System.Drawing.Size(1074, 604);
             this.mainTextBox.TabIndex = 1;
             this.mainTextBox.Text = "";
             // 
@@ -247,7 +247,7 @@ namespace Блокнот
             // 
             this.printDialog.UseEXDialog = true;
             // 
-            // notebookForm
+            // NotebookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -257,7 +257,7 @@ namespace Блокнот
             this.Controls.Add(this.menu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menu;
-            this.Name = "notebookForm";
+            this.Name = "NotebookForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Блокнот";
             this.Load += new System.EventHandler(this.NotebookForm_Load);

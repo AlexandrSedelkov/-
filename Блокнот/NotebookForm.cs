@@ -11,9 +11,9 @@ using System.IO;
 
 namespace Блокнот
 {
-    public partial class notebookForm : Form
+    public partial class NotebookForm : Form
     {
-        public notebookForm()
+        public NotebookForm()
         {
             InitializeComponent();
         }
@@ -25,8 +25,10 @@ namespace Блокнот
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.FileName = "";
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.FileName = "";
+            }
             mainTextBox.Text = "";
         }
 
@@ -49,28 +51,38 @@ namespace Блокнот
         {
             ColorDialog dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
+            {
                 mainTextBox.SelectionColor = dialog.Color;
+            }
         }
 
         private void FontFormatButton_Click(object sender, EventArgs e)
         {
-            FontDialog dialog = new FontDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
-                mainTextBox.SelectionFont = dialog.Font;
+            using (FontDialog dialog = new FontDialog())
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    mainTextBox.SelectionFont = dialog.Font;
+                }
+            }
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
+            {
                 mainTextBox.Text = File.ReadAllText(dialog.FileName);
+            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
-                File.WriteAllText(dialog.FileName,mainTextBox.Text);
+            {
+                File.WriteAllText(dialog.FileName, mainTextBox.Text);
+            }
         }
 
         private void AboutProgramButton_Click(object sender, EventArgs e)
