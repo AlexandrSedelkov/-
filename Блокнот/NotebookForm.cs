@@ -32,27 +32,29 @@ namespace Блокнот
             mainTextBox.Text = "";
         }
 
-        private void CutButton_Click(object sender, EventArgs e)
+        private void CutButton_Click(object sender, EventArgs e) 
         {
-            mainTextBox.Cut();
+            mainTextBox.Cut(); //Вырезать
         }
 
         private void CopyButton_Click(object sender, EventArgs e)
         {
-            mainTextBox.Copy();
+            mainTextBox.Copy(); //Копировать
         }
 
         private void PasteButton_Click(object sender, EventArgs e)
         {
-            mainTextBox.Paste();
+            mainTextBox.Paste(); //Вставить
         }
 
         private void FontColorButton_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            using (ColorDialog dialog = new ColorDialog())
             {
-                mainTextBox.SelectionColor = dialog.Color;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    mainTextBox.SelectionColor = dialog.Color;
+                }
             }
         }
 
@@ -69,19 +71,24 @@ namespace Блокнот
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            using (OpenFileDialog dialog = new OpenFileDialog())
             {
-                mainTextBox.Text = File.ReadAllText(dialog.FileName);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    mainTextBox.Text = File.ReadAllText(dialog.FileName);
+                }
             }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            using (SaveFileDialog dialog = new SaveFileDialog())
             {
-                File.WriteAllText(dialog.FileName, mainTextBox.Text);
+                dialog.Filter = "Текстовый документ (*.txt)|*.txt|Все файлы|*.*";
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(dialog.FileName, mainTextBox.Text);
+                }
             }
         }
 
@@ -111,11 +118,18 @@ namespace Блокнот
 
         private void PrintButton_Click(object sender, EventArgs e)
         {
-            PrintDialog dialog = new PrintDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            using (PrintDialog dialog = new PrintDialog())
             {
-                printDocument.Print();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    printDocument.Print();
+                }
             }
+        }
+
+        private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(mainTextBox.Text, mainTextBox.Font, Brushes.Black, 0, 0);
         }
     }
 }
